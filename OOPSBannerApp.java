@@ -1,64 +1,60 @@
 
 public class OOPSBannerApp {
     public static void main(String[] args) {
-        // UC6: Modular programming using helper methods
-        String[] bannerLines = new String[7];
-        
-        // Loop through each of the 7 lines of the banner
+
+        CharacterPatternMap o = new CharacterPatternMap('O', new String[]{
+            "   ***   ",
+            " **   ** ",
+            "**     **",
+            "**     **",
+            "**     **",
+            " **   ** ",
+            "   ***   "
+        });
+
+        CharacterPatternMap p = new CharacterPatternMap('P', new String[]{
+            " ******  ",
+            " **   ** ",
+            " **   ** ",
+            " ******  ",
+            " **      ",
+            " **      ",
+            " **      "
+        });
+
+        CharacterPatternMap s = new CharacterPatternMap('S', new String[]{
+            "  ****** ",
+            " **      ",
+            " **      ",
+            "  *****  ",
+            "      ** ",
+            "      ** ",
+            " ******  "
+        });
+
         for (int i = 0; i < 7; i++) {
-            bannerLines[i] = buildLine(i);
+            System.out.println(
+                String.join("  ",
+                    o.getLine(i),
+                    o.getLine(i),
+                    p.getLine(i),
+                    s.getLine(i)
+                )
+            );
+        }
+    }
+
+    static class CharacterPatternMap {
+        private char character;
+        private String[] pattern;
+
+        public CharacterPatternMap(char character, String[] pattern) {
+            this.character = character;
+            this.pattern = pattern;
         }
 
-        // Final loop-based rendering system
-        for (String line : bannerLines) {
-            System.out.println(line);
+        public String getLine(int index) {
+            return pattern[index];
         }
-    }
-
-    // Helper method to assemble each line
-    public static String buildLine(int index) {
-        return String.join("  ", getO(index), getO(index), getP(index), getS(index));
-    }
-
-    // Fixed O (clean round shape)
-    private static String getO(int i) {
-        String[] pattern = {
-            "  *****  ",
-            " **   ** ",
-            "**     **",
-            "**     **",
-            "**     **",
-            " **   ** ",
-            "  *****  "
-        };
-        return pattern[i];
-    }
-
-    // Fixed P (proper top + middle bar)
-    private static String getP(int i) {
-        String[] pattern = {
-            " ******  ",
-            " **   ** ",
-            " **   ** ",
-            " ******  ",
-            " **       ",
-            " **       ",
-            " **       "
-        };
-        return pattern[i];
-    }
-
-    // Fixed S (proper curve like screenshot)
-    private static String getS(int i) {
-        String[] pattern = {
-            "  *****  ",
-            " **      ",
-            " **      ",
-            "  *****  ",
-            "      ** ",
-            "      ** ",
-            "  *****  "
-        };
-        return pattern[i];
     }
 }
